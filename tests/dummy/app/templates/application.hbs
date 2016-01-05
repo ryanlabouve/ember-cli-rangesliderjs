@@ -1,3 +1,31 @@
-<h2 id="title">Welcome to Ember</h2>
+<div class="container">
+  <div class="border m4 p4">
+    <h2>ember-cli-rangesliderjs</h2>
+    <div class="controls mb4">
+      <p class="mt2 mb0">min</p>
+      {{input value=min class="field"}}
+      <p class="mt2 mb0">max</p>
+      {{input value=max class="field"}}
+      <p class="mt2 mb0">value</p>
+      {{input value=value class="field"}}
+    </div>
 
-{{outlet}}
+    {{rangeslider-js
+      min=min
+      max=max
+      value=value
+      slide=(action (mut value))
+      slideEnd=(action (mut value))}}
+
+<br><br>
+
+    <pre><code class="html">
+\{{rangeslider-js
+  min=min
+  max=max
+  value=value
+  slide=(action (mut value))
+  slideEnd=(action (mut value))}}
+    </code></pre>
+  </div>
+</div>
