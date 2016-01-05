@@ -1,6 +1,20 @@
 # Ember-cli-rangesliderjs
 
-This README outlines the details of collaborating on this Ember addon.
+In a hurry?: `ember install ember-cli-rangesliderjs`
+
+Here is a link to the original plugin that we are wraping:
+https://andreruffert.github.io/rangeslider.js/
+
+## Basic Usage
+```
+{{rangeslider-js
+  min=min
+  max=max
+  start=value
+  slide=(action (mut value))
+  slideEnd=(action (mut value))}}
+```
+And below is the normal fare for getting development of this addon setup:
 
 ## Installation
 
