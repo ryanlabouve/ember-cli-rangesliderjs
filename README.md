@@ -2,6 +2,8 @@
 
 In a hurry?: `ember install ember-cli-rangesliderjs`
 
+See a demo!:  https://ryanlabouve.github.io/ember-cli-rangesliderjs
+
 Here is a link to the original plugin that we are wraping:
 https://andreruffert.github.io/rangeslider.js/
 
