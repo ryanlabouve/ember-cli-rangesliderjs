@@ -4,6 +4,7 @@ import layout from '../templates/components/rangeslider-js';
 export default Ember.Component.extend({
   layout: layout,
 
+  start: null,
   min: 10,
   max: 1000,
   step: 1,
@@ -16,15 +17,17 @@ export default Ember.Component.extend({
     // Feature detection the default is `true`.
     // Set this to `false` if you want to use rangeslider ui
     polyfill: false,
-
-    // Default CSS classes
-    rangeClass: 'rangeslider',
-    disabledClass: 'rangeslider--disabled',
-    horizontalClass: 'rangeslider--horizontal',
-    verticalClass: 'rangeslider--vertical',
-    fillClass: 'rangeslider__fill',
-    handleClass: 'rangeslider__handle',
   },
+
+  didInitAttrs() {
+    this.set('value', this.get('start'));
+  },
+
+  didUpdateAttrs() {
+    this._updateValue();
+    this._updateConfig();
+  },
+
   didInsertElement() {
     const _self = this;
     const config = this.get('rangesliderOptions');
@@ -42,7 +45,6 @@ export default Ember.Component.extend({
     })(_self);
 
     const opts = Ember.merge(config, cbs);
-
     this.$('input').rangeslider(opts);
     this.set('$el', this.$('input'));
   },
@@ -51,21 +53,21 @@ export default Ember.Component.extend({
     this.$('input').rangeslider('destroy');
   },
 
-  changedIncomingVals: Ember.observer('value', function() {
+  _updateValue() {
     const $el = this.get('$el');
     const action = function() {
-      $el.val(this.get('value')).change();
+      $el.val(this.get('start')).change();
     };
     Ember.run.scheduleOnce('afterRender', this, action);
-  }),
+  },
 
-  changedConfigVals: Ember.observer('mix', 'max', function() {
+  _updateConfig() {
     const $el = this.get('$el');
     const action = function() {
       $el.rangeslider('update', true);
     };
     Ember.run.scheduleOnce('afterRender', this, action);
-  }),
+  },
 
   _onSlideEnd(position, value, slideEnd) {
     if (typeof slideEnd !== 'function') {
