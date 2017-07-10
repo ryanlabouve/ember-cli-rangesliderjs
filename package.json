@@ -11,7 +11,7 @@
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": "https://github.com/ryanlabouve/ember-cli-rangesliderjs",
   "scripts": {
     "build": "ember build",
     "start": "ember server",
